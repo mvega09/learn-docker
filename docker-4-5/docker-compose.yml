@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  form_web:
+    build: ./flask_formulario
+    ports:
+      - "5000:5000"
+    depends_on:
+      - from_db
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@from_db:5432/formdb
+  from_db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: formdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

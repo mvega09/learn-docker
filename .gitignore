@@ -1,0 +1,5 @@
+# Ignorar volúmenes y datos de Postgres
+docker-3/
+*/pgdata/
+*/data/
+*.log
