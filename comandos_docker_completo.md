@@ -64,12 +64,14 @@ docker run -d   --name form_web   -e DATABASE_URL=postgresql://postgres:postgres
 
 ### Acceder a un contenedor
 ```bash
-docker exec -it form_db bash
+docker exec -it form_db bash /bin/bash
 ```
 
 ### Ver logs
 ```bash
 docker logs form_web
+docker logs -f form_web #ver logs en vivo
+
 ```
 
 ### Detener / iniciar / eliminar contenedores
