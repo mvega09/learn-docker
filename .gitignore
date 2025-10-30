@@ -3,3 +3,4 @@ docker-3/
 */pgdata/
 */data/
 *.log
+.env

@@ -74,11 +74,12 @@ docker logs -f form_web #ver logs en vivo
 
 ```
 
-### Detener / iniciar / eliminar contenedores
+### Detener / iniciar / eliminar contenedores / eliminar todos los contenedores aun en estado running
 ```bash
 docker stop form_web
 docker start form_web
 docker rm form_web
+docker rm -f $(dockerps -q)
 ```
 
 ---
@@ -97,6 +98,12 @@ docker run -d   --name form_db   --network form_net   -e POSTGRES_USER=postgres 
 
 ```bash
 docker run -d   --name form_web   --network form_net   -e DATABASE_URL=postgresql://postgres:postgres@form_db:5432/formdb   -p 5000:5000   formulario-web
+```
+
+### Crear un volumen
+```bash
+docker volume create nombre_volumen
+docker volume ls #listar todos los volumenes creados
 ```
 
 ---
