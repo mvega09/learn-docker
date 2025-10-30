@@ -102,9 +102,31 @@ services:
       - backend
     networks:
       - frontend
+  
+  metabase:
+    image: metabase/metabase:latest
+    container_name: siacom_metabase
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      MB_DB_TYPE: mysql
+      MB_DB_DBNAME: "${DB_NAME}"
+      MB_DB_PORT: 3306
+      MB_DB_USER: "${DB_USER}"
+      MB_DB_PASS: "${DB_PASSWORD}"
+      MB_DB_HOST: db
+    ports:
+      - "3001:3000"
+    volumes:
+      - metabase_data:/metabase-data
+    networks:
+      - admin_ph
 
 volumes:
   db_data:
+  metabase_data:
 
 networks:
   backend:
