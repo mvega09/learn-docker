@@ -22,12 +22,13 @@ app.add_middleware(
 # Database connection
 def get_db_connection():
     return mysql.connector.connect(
-        host="db",
-        user="root",
-        password="superrootpassword",
-        database="siacom_db",
-        port=3306
+        host=os.getenv("DB_HOST", "db4free.net"),
+        user=os.getenv("DB_USER", "siacom_user"),
+        password=os.getenv("DB_PASSWORD", "admin123"),
+        database=os.getenv("DB_NAME", "siacom_db"),
+        port=int(os.getenv("DB_PORT", 3306))
     )
+
 
 # Pydantic models
 class UserLogin(BaseModel):
