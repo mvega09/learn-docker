@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:8000", // Backend FastAPI
+  baseURL: "https://learn-docker-zxf3.onrender.com", // Backend FastAPI
 });
 
 // Interceptor para tokens administrativos
@@ -15,7 +15,7 @@ API.interceptors.request.use((req) => {
 
 // API específica para familiares
 const FamilyAPI = axios.create({
-  baseURL: "http://localhost:8000",
+  baseURL: "https://learn-docker-zxf3.onrender.com",
 });
 
 FamilyAPI.interceptors.request.use((req) => {
