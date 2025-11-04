@@ -22,7 +22,7 @@ export default function FamilyLogin() {
     }
 
     try {
-      const res = await axios.post("http://localhost:8000/family/login", { 
+      const res = await axios.post("https://siacom-frontend.onrender.com/family/login", { 
         patient_code: patientCode, 
         family_code: familyCode 
       });
