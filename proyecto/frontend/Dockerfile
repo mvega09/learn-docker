@@ -12,7 +12,7 @@ COPY . .
 
 # build (Vite)
 ARG VITE_API_URL
-ENV VITE_API_URL=${VITE_API_URL:-http://backend:8000}
+ENV VITE_API_URL=${VITE_API_URL:-https://learn-docker-zxf3.onrender.com}
 RUN npm run build
 
 # Stage 2: serve with nginx
