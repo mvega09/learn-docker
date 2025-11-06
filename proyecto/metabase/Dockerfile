@@ -1,18 +1,24 @@
+# Usar la imagen oficial de Metabase
 FROM metabase/metabase:latest
 
-# Establecer variables de entorno por defecto
-ENV MB_JETTY_HOST=0.0.0.0
-ENV MB_JETTY_PORT=3000
+# Información del mantenedor
+LABEL maintainer="mvega100570@umanizales.edu.co"
+LABEL description="Metabase para dashboards gerenciales SIACOM"
 
-# Exponer el puerto que Render usará
+# Variables de entorno para la configuración de Metabase
+ENV MB_JETTY_HOST="0.0.0.0" \
+    MB_JETTY_PORT="3000" \
+    JAVA_TIMEZONE="America/Bogota"
+
+# Crear directorio para datos persistentes
+RUN mkdir -p /metabase-data && \
+    chmod 755 /metabase-data
+
+# Establecer el directorio de datos
+ENV MB_DB_FILE="/metabase-data/metabase.db"
+
+# Puerto que expone la aplicación
 EXPOSE 3000
 
-# Crear directorio para datos de Metabase
-RUN mkdir -p /metabase-data
-
-# Volumen para persistencia de datos
-VOLUME /metabase-data
-
-# El comando por defecto ya está configurado en la imagen base
-# pero lo podemos especificar explícitamente si es necesario
-CMD ["java", "-jar", "/app/metabase.jar"]
+# Comando de inicio
+CMD ["sh", "-c", "java -jar /app/metabase.jar"]
