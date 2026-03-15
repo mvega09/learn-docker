@@ -13,7 +13,7 @@ services:
     volumes:
       - n8n_data:/home/node/.n8n
       - /datos/home/mateo/proyectos/n8n-files:/files
-    restart: unless-stopped
+    restart: no
 
 volumes:
   n8n_data:
